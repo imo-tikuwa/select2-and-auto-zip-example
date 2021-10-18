@@ -19,5 +19,6 @@ cp .env.example .env
 php artisan key:generate
 wsl
 vendor/bin/sail up -d
+vendor/bin/sail exec laravel.test php artisan migrate
 ```
 .envの改行コードがCRLFだと`/.env: line 〇〇: $'\r': command not found`というエラーが出るためLFに変換しておいた方が良いかもしれない。
