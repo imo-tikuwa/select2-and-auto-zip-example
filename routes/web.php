@@ -16,3 +16,5 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [ExampleController::class, 'index']);
 Route::post('/', [ExampleController::class, 'index']);
+
+Route::get('/add-row', [ExampleController::class, 'addRow']);
