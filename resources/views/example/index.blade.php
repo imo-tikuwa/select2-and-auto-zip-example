@@ -87,6 +87,7 @@
                                 if (city) {
                                     let pref_code = prefs[$target.prev('.p-region').val()];
                                     $('#pref' + index).val(pref_code).trigger('change');
+                                    $('#city' + index).empty().append(new Option('選択してください', '', false, false));
                                     $.getJSON(`/json_data/${pref_code}.json`, json_cities => {
                                         json_cities.forEach(json_city => {
                                             let selected = json_city === city;
@@ -110,11 +111,14 @@
                 $('#add-row').click(e => {
                     let next_index = $('#addresses table').length;
                     $.get(`/add-row?index=${next_index}`, html => {
-                        let $html = $(html);
-                        $html.find('select').select2({
-                            theme: 'bootstrap4',
-                        });
-                        $('.buttons').before($html);
+                        // レスポンスのhtmlテキスト→jqueryオブジェクト→DOMエレメントに変換
+                        html = $(html).get(0);
+                        attachFormEvents(html);
+                        $('.buttons').before(html);
+                        // DOM追加後、yubinbango.jsのDOMContentLoadedで実行してる処理を再度実行することで動的に追加したフォームに対応
+                        // ↓issue探したらあった
+                        // https://github.com/yubinbango/yubinbango/issues/6
+                        new YubinBango.MicroformatDom();
                     });
                 });
             });
