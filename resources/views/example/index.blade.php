@@ -66,8 +66,8 @@
                         }
                     });
 
-                    $('[id^=search]').click(e => {
-                        let index = $(e.target).data('index');
+                    $('[id^=search]', table).click(e => {
+                        let index = $(e.currentTarget).data('index');
                         document.querySelector('#zip' + index).dispatchEvent(new KeyboardEvent("keyup"));
                     });
 
