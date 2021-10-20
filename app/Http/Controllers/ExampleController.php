@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Storage;
 
 class ExampleController extends Controller
 {
-    public function index(Request $request)
+    public function index(Request $request, $view = 'object_define_property')
     {
         // 保存処理
         if ($request->getMethod() === 'POST') {
@@ -37,7 +37,6 @@ class ExampleController extends Controller
             }
         }
 
-        $view = $request->get('view', 'object_define_property');
         return view("example.{$view}", compact('datas', 'cities'));
     }
 

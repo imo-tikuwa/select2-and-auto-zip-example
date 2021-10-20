@@ -38,7 +38,7 @@
         </style>
     </head>
     <body>
-        <form id="main-form" method="POST" action='/'>
+        <form id="main-form" method="POST" >
             @csrf
             <div id="addresses">
                 @foreach($datas as $index => $data)

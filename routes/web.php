@@ -13,8 +13,8 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', [ExampleController::class, 'index']);
-Route::post('/', [ExampleController::class, 'index']);
+$example_view_regex = '(object_define_property|mutation_observer)';
+Route::get('/{view?}', [ExampleController::class, 'index'])->where('view', $example_view_regex);
+Route::post('/{view?}', [ExampleController::class, 'index'])->where('view', $example_view_regex);
 
 Route::get('/add-row', [ExampleController::class, 'addRow']);
