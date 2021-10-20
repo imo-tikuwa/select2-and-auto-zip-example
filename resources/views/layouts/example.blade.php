@@ -38,6 +38,9 @@
         </style>
     </head>
     <body>
+        <a href="{{ route('example', 'object-define-property') }}" class="link-primary">Object.defineProperty</a>
+        /
+        <a href="{{ route('example', 'mutation-observer') }}" class="link-primary">MutationObserver</a> を使ったパターン
         <form id="main-form" method="POST" >
             @csrf
             <div id="addresses">
