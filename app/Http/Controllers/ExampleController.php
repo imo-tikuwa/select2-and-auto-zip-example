@@ -6,10 +6,11 @@ use App\Models\Address;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class ExampleController extends Controller
 {
-    public function index(Request $request)
+    public function index(Request $request, $view = 'object-define-property')
     {
         // 保存処理
         if ($request->getMethod() === 'POST') {
@@ -37,7 +38,7 @@ class ExampleController extends Controller
             }
         }
 
-        return view('example/index', compact('datas', 'cities'));
+        return view('example.' . str_replace('-', '_', $view) , compact('datas', 'cities'));
     }
 
     /**
@@ -50,6 +51,6 @@ class ExampleController extends Controller
         $cities = [];
         $index = $request->get('index');
 
-        return view('example/form', compact('data', 'cities', 'index'));
+        return view('example.form', compact('data', 'cities', 'index'));
     }
 }
