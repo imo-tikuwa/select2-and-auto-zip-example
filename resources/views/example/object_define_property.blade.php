@@ -51,6 +51,7 @@
         <script src="https://yubinbango.github.io/yubinbango/yubinbango.js" charset="UTF-8"></script>
         <script type="text/javascript">
             $(() => {
+                console.info('DOM変更の検知にObject.definePropertyを使ったパターン');
 
                 // K:都道府県名 V:都道府県コード
                 const prefs = @json(array_flip(config('const.Prefs'))),

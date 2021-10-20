@@ -37,7 +37,7 @@ class ExampleController extends Controller
             }
         }
 
-        return view('example/index', compact('datas', 'cities'));
+        return view('example.object_define_property', compact('datas', 'cities'));
     }
 
     /**
@@ -50,6 +50,6 @@ class ExampleController extends Controller
         $cities = [];
         $index = $request->get('index');
 
-        return view('example/form', compact('data', 'cities', 'index'));
+        return view('example.form', compact('data', 'cities', 'index'));
     }
 }
