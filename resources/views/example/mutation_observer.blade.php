@@ -28,6 +28,18 @@
                         let selected = json_city === city;
                         $('#city' + index).append(new Option(json_city, json_city, selected, selected));
                     });
+                    // 市区町村の選択値が空文字 = RESASで取得した市区町村とyubinbango.jsで取得した市区町村が一致しない
+                    // jsonの市区町村のうちyubinbango.jsで取得した市区町村で終わるものが1件のみ見つかった場合、その市区町村を選択しておく
+                    if ($('#city' + index).val() === '') {
+                        let matcher = json_cities.filter(json_city => {
+                            if (city.endsWith(json_city)) {
+                                return json_city;
+                            }
+                        });
+                        if (matcher.length === 1) {
+                            $('#city' + index).val(matcher[0]);
+                        }
+                    }
                 });
                 $('#city' + index).trigger('change');
             }
