@@ -37,7 +37,8 @@ class ExampleController extends Controller
             }
         }
 
-        return view('example.object_define_property', compact('datas', 'cities'));
+        $view = $request->get('view', 'object_define_property');
+        return view("example.{$view}", compact('datas', 'cities'));
     }
 
     /**
